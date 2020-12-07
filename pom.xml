@@ -29,8 +29,6 @@
       <defaultGoal>install</defaultGoal>
    </build>
    <modules>
-   	<module>ex11-12</module>
-   	<module>ex11-16</module>
-   	<module>ex11-17</module>
+   <module>practice01</module>
    </modules>
 </project>

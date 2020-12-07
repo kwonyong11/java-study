@@ -1,4 +1,4 @@
-package practice01;
+package prob5;
 
 public class Prob5 {
 

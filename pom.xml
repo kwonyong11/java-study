@@ -38,5 +38,6 @@
    <module>ㅓㅁㅍㅁ-ㅐㅐㅔ</module>
    <module>java-oop</module>
    <module>io</module>
+   <module>network</module>
    </modules>
 </project>

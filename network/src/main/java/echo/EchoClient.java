@@ -2,9 +2,7 @@ package echo;
 
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.net.InetSocketAddress;
@@ -36,7 +34,7 @@ public class EchoClient {
 			
 			while(true) {
 				//5. 키보드 입력 받기
-				System.out.println(">>");
+				System.out.print(">>");
 				String line = scanner.nextLine();
 				
 				if("quit".equals(line)) {

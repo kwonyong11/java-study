@@ -42,15 +42,16 @@ public class ChatClient {
 				System.out.print( ">>" );
 				String data = scanner.nextLine();
 						
-				if( "quit".equals( data ) == true ) {
-					// 8. quit 프로토콜 처리
+				if("quit".equals(data)) {
+					// 8. quit 프로토콜 처리					
 					break;
 				} else {
 					// 9. 메시지 처리 
 					pw.println(data);
 				}
 			}
-
+			
+			
 		} catch( IOException ex ) {
 			ChatServer.log( "error:" + ex );
 		} finally {

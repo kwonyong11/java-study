@@ -41,8 +41,10 @@ public class ChatServerThread extends Thread {
 			while(true) {
 				//2. 데이터 읽기
 				String data = br.readLine();
+				ChatServer.log(data);
 				if(data == null) {
 					//client가 소켓을 정상적으로 종료
+					doQuit(pw);
 					ChatServer.log("클라이언트로 부터 연결 끊김");
 					break;
 				}
@@ -57,11 +59,9 @@ public class ChatServerThread extends Thread {
 				   
 				   doMessage( tokens[1] );
 
-				} else if( "quit".equals( tokens[0] ) ) {
-				   
+				} else if("quit".equals( tokens[0] ) ) {
 				   doQuit(pw);
 				   break;
-
 				} else {
 
 				   ChatServer.log( "에러:알수 없는 요청(" + tokens[0] + ")" );
@@ -69,8 +69,10 @@ public class ChatServerThread extends Thread {
 			}
 		}catch(SocketException e){
 			// client가 비정상 종료
+			doQuit(pw);
 			System.out.println("[server] suddenly closed by client");
 		}catch(IOException e) {
+			doQuit(pw);
 			System.out.println("[server] error:"+e);
 		}finally {
 			try {

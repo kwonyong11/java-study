@@ -12,7 +12,7 @@ import java.io.Writer;
 
 public class ChatServer {
 	static final String SERVER_IP="127.0.0.1";
-	static final int PORT=8000;
+	static final int PORT=7000;
 	
 	public static void main(String[] args) {
 		ServerSocket serverSocket=null;

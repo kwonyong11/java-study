@@ -15,11 +15,16 @@ public class ChatClientReceiveThread extends Thread{
 	public void run() {
 		try{
 			while(true) {
-				System.out.println(bufferedReader.readLine());
+				String data=bufferedReader.readLine();
+				System.out.println(data);
+				if(data==null) {
+					break;
+				}
 			}
-		
 		}catch(Exception e) {
 			e.printStackTrace();
+		}finally {
+			System.exit(0);
 		}
 		
 	}

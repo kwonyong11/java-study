@@ -47,7 +47,7 @@ public class ChatClient {
 					break;
 				} else {
 					// 9. 메시지 처리 
-					pw.println(data);
+					pw.println("message:"+data);
 				}
 			}
 			
@@ -56,12 +56,14 @@ public class ChatClient {
 			ChatServer.log( "error:" + ex );
 		} finally {
 			try {
+				System.out.println("종료합니다.");
 				if(scanner  != null) {
 					scanner.close();
 				}
 				if(socket != null && !socket.isClosed()) {
 					socket.close();
 				}
+				System.exit(0);
 			}
 			catch(IOException e) {
 				e.printStackTrace();

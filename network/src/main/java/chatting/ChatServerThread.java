@@ -41,7 +41,6 @@ public class ChatServerThread extends Thread {
 			while(true) {
 				//2. 데이터 읽기
 				String data = br.readLine();
-				ChatServer.log(data);
 				if(data == null) {
 					//client가 소켓을 정상적으로 종료
 					doQuit(pw);
@@ -94,7 +93,7 @@ public class ChatServerThread extends Thread {
 		/* writer pool에  저장 */
 		addWriter(writer);
 		
-		pw.println("join:ok");
+		pw.println("환영합니다.");
 		pw.flush();
 	}
 	

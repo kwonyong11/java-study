@@ -26,7 +26,6 @@
             
          </plugin>
       </plugins>
-      <defaultGoal>install</defaultGoal>
    </build>
    <modules>
    <module>practice01</module>
@@ -35,7 +34,6 @@
    <module>practice03</module>
    <module>practice04</module>
    <module>practice05</module>
-   <module>ㅓㅁㅍㅁ-ㅐㅐㅔ</module>
    <module>java-oop</module>
    <module>io</module>
    <module>network</module>

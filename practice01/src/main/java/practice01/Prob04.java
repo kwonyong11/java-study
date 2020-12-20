@@ -42,6 +42,7 @@ public class Prob04 {
 		}
 		
 		System.out.println("종료합니다.");
+		scan.close();
 	}
 
 }

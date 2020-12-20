@@ -12,6 +12,13 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
+import java.net.Socket;
 
 public class ChatWindow {
 
@@ -20,13 +27,19 @@ public class ChatWindow {
 	private Button buttonSend;
 	private TextField textField;
 	private TextArea textArea;
-
-	public ChatWindow(String name) {
+	private Socket socket;
+	private String nickname;
+	private BufferedReader br;
+	private PrintWriter pw;
+	
+	public ChatWindow(String name, Socket socket,String nickname) {
 		frame = new Frame(name);
 		pannel = new Panel();
 		buttonSend = new Button("Send");
 		textField = new TextField();
 		textArea = new TextArea(30, 80);
+		this.socket=socket;
+		this.nickname=nickname;
 	}
 
 	public void show() {
@@ -34,6 +47,16 @@ public class ChatWindow {
 		 * 1. UI 초기화
 		 */
 		// Button
+		try {
+			br = new BufferedReader(new InputStreamReader(socket.getInputStream(),"UTF-8"));
+			pw = new PrintWriter(new OutputStreamWriter(socket.getOutputStream(),"UTF-8"),true);
+		} catch (UnsupportedEncodingException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		buttonSend.setBackground(Color.GRAY);
 		buttonSend.setForeground(Color.WHITE);
 		buttonSend.addActionListener(new ActionListener() {
@@ -91,16 +114,37 @@ public class ChatWindow {
 		textField.requestFocus();
 		
 		// 소켓을 통해 전송
-		
+		pw.println(message);
 		// 소켓을 통해 메세지가 온 경우(실제로는 쓰레드에서 있어야 하는 코드...)
-		textArea.append("둘리:" + message);
-		textArea.append("\n");
+		new ChatClientThread(message).start();
 	}
 
 	
 	public class ChatClientThread extends Thread{
+		private String message;
+		
+		public ChatClientThread(String message) {
+			this.message=message;
+		}
 		@Override
 		public void run() {
+			try {
+				while(true) {
+					textArea.append(br.readLine());
+					textArea.append("\n");
+					
+					if(br.readLine()==null) {
+						break;
+					}
+				}
+			}
+			catch(IOException e){
+				e.printStackTrace();
+			}
+			finally {
+				System.exit(0);
+			}
+			
 		}
 		
 	}

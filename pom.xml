@@ -39,5 +39,6 @@
    <module>network</module>
    <module>jdbc-bitacademy</module>
    <module>jdbc-practices</module>
+   <module>exception</module>
    </modules>
 </project>
